@@ -211,6 +211,13 @@ register(
 )
 
 register(
+    id="ur5e2",
+    entry_point="gymnasium.envs.mujoco.ur5e2:PusherEnv",
+    max_episode_steps=500,
+    reward_threshold=0.0,
+)
+
+register(
     id="InvertedPendulum-v2",
     entry_point="gymnasium.envs.mujoco:InvertedPendulumEnv",
     max_episode_steps=1000,
