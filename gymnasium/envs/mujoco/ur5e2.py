@@ -214,27 +214,102 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
             "render_fps": int(np.round(1.0 / self.dt)),
         }
 
+    # def _get_rew(self, action):
+    #     vec_1 = self.get_body_com("bottle") - self.get_body_com("robot0:2f85:base")
+    #     vec_2 = self.get_body_com("bottle") - self.get_body_com("goal")
+
+    #     reward_near = -np.linalg.norm(vec_1)
+    #     reward_dist = -np.linalg.norm(vec_2)
+    #     reward_ctrl = -np.square(action).sum()
+
+    #     reward = reward_dist + reward_near * 0.5 #+ reward_ctrl * 0.1
+    #     # reward = reward_near + reward_dist #+ 0.1 * reward_ctrl
+
+    #     done = np.linalg.norm(vec_2) < 0.2
+
+    #     reward_info = {
+    #         "reward_dist": reward_dist,
+    #         "reward_ctrl": reward_ctrl,
+    #         "reward_near": reward_near,
+    #     }
+
     # def step(self, action):
     #     self.do_simulation(action, self.frame_skip)
 
     #     observation = self._get_obs()
-    #     reward, reward_info = self._get_rew(action)
+    #     reward, reward_info, done = self._get_rew(action)
     #     info = reward_info
 
     #     if self.render_mode == "human":
     #         self.render()
     #     # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
-    #     return observation, reward, False, False, info
 
+    #     return observation, reward, done, False, info
+    
+    
+    # def reset_model(self):
+
+
+    #     qpos = self.init_qpos
+    #     self.goal_pos = np.asarray([-0.9, 0])
+
+    #     self.cylinder_pos = np.concatenate(
+    #         [
+    #             self.np_random.uniform(low=-0.7, high=-0.5, size=1),
+    #             self.np_random.uniform(low=0.5, high=0.7, size=1),
+    #         ]
+    #     )
+
+    #     qpos[-4:-2] = self.cylinder_pos
+    #     qpos[-2:] = self.goal_pos
+
+    #     qvel = self.init_qvel #+ self.np_random.uniform(
+    #         #low=-0.005, high=0.005, size=self.model.nv
+    #     #)
+
+    #     qvel[-4:] = 0
+
+    #     self.set_state(qpos, qvel)
+
+    #     return self._get_obs()
+
+    # def _get_obs(self):
+    #     return np.concatenate(
+    #         [
+    #             self.data.qpos.flatten()[:7],
+    #             self.data.qvel.flatten()[:7],
+    #             self.get_body_com("robot0:2f85:base"),
+    #             self.get_body_com("bottle"),
+    #             self.get_body_com("goal"),
+    #         ]
+    #     )
+    
+    
+    
+    
     def _get_rew(self, action):
         vec_1 = self.get_body_com("bottle") - self.get_body_com("robot0:2f85:base")
         vec_2 = self.get_body_com("bottle") - self.get_body_com("goal")
 
-        reward_near = -np.linalg.norm(vec_1) * self._reward_near_weight
-        reward_dist = -np.linalg.norm(vec_2) * self._reward_dist_weight
-        reward_ctrl = -np.square(action).sum() * self._reward_control_weight
+        # Calculer le centre de masse pour right_pad et left_pad
+        com_right_pad = self.get_body_com("robot0:2f85:right_pad")
+        com_left_pad = self.get_body_com("robot0:2f85:left_pad")
 
-        reward = reward_dist + reward_ctrl + reward_near
+        # Trouver le point milieu entre right_pad et left_pad
+        mid_point = (com_right_pad + com_left_pad) / 2
+
+        # Calculer la différence entre la position du centre de masse de "bottle" et le point milieu
+        vec_diff = self.get_body_com("bottle") - mid_point
+
+        # reward_near = -np.linalg.norm(vec_1)
+        reward_near = -np.linalg.norm(vec_diff)
+        reward_dist = -np.linalg.norm(vec_2)
+        reward_ctrl = -np.square(action).sum()
+
+        reward = reward_dist + 0.5 * reward_near #+ reward_ctrl * 0.1
+        # reward = reward_near + reward_dist #+ 0.1 * reward_ctrl
+
+        done = np.linalg.norm(vec_2) < 0.08
 
         reward_info = {
             "reward_dist": reward_dist,
@@ -242,25 +317,42 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
             "reward_near": reward_near,
         }
 
-        return reward, reward_info
+        return reward, reward_info, done
 
     def step(self, action):
         self.do_simulation(action, self.frame_skip)
 
         observation = self._get_obs()
-        reward, reward_info = self._get_rew(action)
+        reward, reward_info, done = self._get_rew(action)
         info = reward_info
 
         if self.render_mode == "human":
             self.render()
         # truncation=False as the time limit is handled by the `TimeLimit` wrapper added during `make`
 
-        return observation, reward, False, False, info
+        return observation, reward, done, False, info
 
 
     def reset_model(self):
+
+
         qpos = self.init_qpos
-        qvel = self.init_qvel
+        #qvel = self.init_qvel
+
+        self.cylinder_pos = np.concatenate(
+            [
+                self.np_random.uniform(low=-0.08, high=0.08, size=1),
+                self.np_random.uniform(low=-0.08, high=0.08, size=1)
+            ]
+        )
+
+        qpos[-2:] = self.cylinder_pos
+
+        qvel = self.init_qvel + self.np_random.uniform(
+            low=-0.05, high=0.05, size=self.model.nv
+        )
+
+        qvel[-2:] = 0
 
         #qpos = self.np_random.uniform(low=-20, high=20, size=self.model.nq)
 
@@ -281,8 +373,16 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
         return self._get_obs()
 
 
-
-
+    def _get_obs(self):
+        return np.concatenate(
+            [
+                self.data.qpos.flatten()[:7],
+                self.data.qvel.flatten()[:7],
+                self.get_body_com("robot0:2f85:base"),
+                self.get_body_com("bottle"),
+                self.get_body_com("goal"),
+            ]
+        )
 
 
 
@@ -312,16 +412,3 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
     #     qvel[-4:] = 0
     #     self.set_state(qpos, qvel)
     #     return self._get_obs()
-    
-
-
-    def _get_obs(self):
-        return np.concatenate(
-            [
-                self.data.qpos.flatten()[:7],
-                self.data.qvel.flatten()[:7],
-                self.get_body_com("robot0:2f85:base"),
-                self.get_body_com("bottle"),
-                self.get_body_com("goal"),
-            ]
-        )

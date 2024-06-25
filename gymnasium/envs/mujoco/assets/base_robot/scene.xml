@@ -1,6 +1,6 @@
 <mujoco model="robot">
 
-  <!--<option gravity="0 0 0"/> -->
+  <option gravity="0 0 0"/>
 
   <compiler angle="radian" meshdir="assets" autolimits="true" />
 
@@ -174,18 +174,18 @@
 
         <!-- ur5e -->
         <body name="robot0:ur5e:base" pos="0 0 0" quat="1 0 0 1" childclass="ur5e">
-          <inertial mass="4.0" pos="0 0 0" diaginertia="0.00443333156 0.00443333156 0.0072" />
+          <!--<inertial mass="4.0" pos="0 0 0" diaginertia="0.00443333156 0.00443333156 0.0072" />-->
           <geom mesh="ur5e:base_0" material="ur5e:black" class="ur5e:visual" />
           <geom mesh="ur5e:base_1" material="ur5e:jointgray" class="ur5e:visual" />
           <body name="robot0:ur5e:shoulder_link" pos="0 0 0.163">
-            <inertial mass="3.7" pos="0 0 0" diaginertia="0.0102675 0.0102675 0.00666" />
+             <!--<inertial mass="3.7" pos="0 0 0" diaginertia="0.0102675 0.0102675 0.00666" /> -->
             <joint name="robot0:ur5e:shoulder_pan_joint" class="ur5e:size3" axis="0 0 1" />
             <geom mesh="ur5e:shoulder_0" material="ur5e:urblue" class="ur5e:visual" />
             <geom mesh="ur5e:shoulder_1" material="ur5e:black" class="ur5e:visual" />
             <geom mesh="ur5e:shoulder_2" material="ur5e:jointgray" class="ur5e:visual" />
             <geom class="ur5e:collision" size="0.06 0.06" pos="0 0 -0.04" />
             <body name="robot0:ur5e:upper_arm_link" pos="0 0.138 0" quat="1 0 1 0">
-              <inertial mass="8.393" pos="0 0 0.2125" diaginertia="0.133886 0.133886 0.0151074" />
+               <!--<inertial mass="8.393" pos="0 0 0.2125" diaginertia="0.133886 0.133886 0.0151074" /> -->
               <joint name="robot0:ur5e:shoulder_lift_joint" class="ur5e:size3" />
               <geom mesh="ur5e:upperarm_0" material="ur5e:linkgray" class="ur5e:visual" />
               <geom mesh="ur5e:upperarm_1" material="ur5e:black" class="ur5e:visual" />
@@ -194,7 +194,7 @@
               <geom class="ur5e:collision" pos="0 -0.04 0" quat="1 1 0 0" size="0.06 0.06" />
               <geom class="ur5e:collision" size="0.05 0.2" pos="0 0 0.2" />
               <body name="robot0:ur5e:forearm_link" pos="0 -0.131 0.425">
-                <inertial mass="2.275" pos="0 0 0.196" diaginertia="0.0311796 0.0311796 0.004095" />
+                <!-- <inertial mass="2.275" pos="0 0 0.196" diaginertia="0.0311796 0.0311796 0.004095" /> -->
                 <joint name="robot0:ur5e:elbow_joint" class="ur5e:size3_limited" />
                 <geom mesh="ur5e:forearm_0" material="ur5e:urblue" class="ur5e:visual" />
                 <geom mesh="ur5e:forearm_1" material="ur5e:linkgray" class="ur5e:visual" />
@@ -203,14 +203,14 @@
                 <geom class="ur5e:collision" pos="0 0.08 0" quat="1 1 0 0" size="0.055 0.06" />
                 <geom class="ur5e:collision" size="0.038 0.19" pos="0 0 0.2" />
                 <body name="robot0:ur5e:wrist_1_link" pos="0 0 0.392" quat="1 0 1 0">
-                  <inertial mass="1.219" pos="0 0.127 0" diaginertia="0.0025599 0.0025599 0.0021942" />
+                  <!-- <inertial mass="1.219" pos="0 0.127 0" diaginertia="0.0025599 0.0025599 0.0021942" /> -->
                   <joint name="robot0:ur5e:wrist_1_joint" class="ur5e:size1" />
                   <geom mesh="ur5e:wrist1_0" material="ur5e:black" class="ur5e:visual" />
                   <geom mesh="ur5e:wrist1_1" material="ur5e:urblue" class="ur5e:visual" />
                   <geom mesh="ur5e:wrist1_2" material="ur5e:jointgray" class="ur5e:visual" />
                   <geom class="ur5e:collision" pos="0 0.05 0" quat="1 1 0 0" size="0.04 0.07" />
                   <body name="robot0:ur5e:wrist_2_link" pos="0 0.127 0">
-                    <inertial mass="1.219" pos="0 0 0.1" diaginertia="0.0025599 0.0025599 0.0021942" />
+                    <!-- <inertial mass="1.219" pos="0 0 0.1" diaginertia="0.0025599 0.0025599 0.0021942" /> -->
                     <joint name="robot0:ur5e:wrist_2_joint" axis="0 0 1" class="ur5e:size1" />
                     <geom mesh="ur5e:wrist2_0" material="ur5e:black" class="ur5e:visual" />
                     <geom mesh="ur5e:wrist2_1" material="ur5e:urblue" class="ur5e:visual" />
@@ -218,16 +218,16 @@
                     <geom class="ur5e:collision" size="0.04 0.06" pos="0 0 0.04" />
                     <geom class="ur5e:collision" pos="0 0.02 0.1" quat="1 1 0 0" size="0.04 0.04" />
                     <body name="robot0:ur5e:wrist_3_link" pos="0 0 0.1">
-                      <inertial mass="0.1889" pos="0 0.0771683 0" quat="1 0 0 1"
-                        diaginertia="0.000132134 9.90863e-05 9.90863e-05" />
+                      <!-- <inertial mass="0.1889" pos="0 0.0771683 0" quat="1 0 0 1"
+                        diaginertia="0.000132134 9.90863e-05 9.90863e-05" /> -->
                       <joint name="robot0:ur5e:wrist_3_joint" class="ur5e:size1" />
                       <geom material="ur5e:linkgray" mesh="ur5e:wrist3" class="ur5e:visual" />
                       <geom class="ur5e:eef_collision" pos="0 0.08 0" quat="1 1 0 0"
                         size="0.04 0.02" />
 
                       <!-- end effector site 
-                      <site name="robot0:eef_site" pos="0 0.26 0" quat="-1 1 0 0" />
-                      <geom size="0.01" rgba="1 0 0 1" pos="0 0.26 0" quat="-1 1 0 0" contype="0"
+                      <site name="robot0:eef_site" pos="0 0.25 0" quat="-1 1 0 0" />
+                      <geom size="0.01" rgba="1 0 0 1" pos="0 0.25 0" quat="-1 1 0 0" contype="0"
                         conaffinity="0" group="2" />-->
 
                       <!-- 2f85 -->
@@ -236,51 +236,51 @@
                         <geom class="2f85:visual" mesh="2f85:base_mount" material="2f85:black" />
                         <geom class="2f85:collision" mesh="2f85:base_mount" />
                         <body name="robot0:2f85:base" pos="0 0 0.0038" quat="1 0 0 -1">
-                          <inertial mass="0.777441" pos="0 -2.70394e-05 0.0354675"
+                          <!-- <inertial mass="0.777441" pos="0 -2.70394e-05 0.0354675"
                             quat="1 -0.00152849 0 0"
-                            diaginertia="0.000260285 0.000225381 0.000152708" />
+                            diaginertia="0.000260285 0.000225381 0.000152708" /> -->
                           <geom class="2f85:visual" mesh="2f85:base" material="2f85:black" />
                           <geom class="2f85:collision" mesh="2f85:base" />
                           <site name="robot0:2f85:pinch" pos="0 0 0.145" type="sphere" group="5"
                             rgba="0.9 0.9 0.9 1" size="0.005" />
                           <!-- Right-hand side 4-bar linkage -->
                           <body name="robot0:2f85:right_driver" pos="0 0.0306011 0.054904">
-                            <inertial mass="0.00899563" pos="2.96931e-12 0.0177547 0.00107314"
+                            <!-- <inertial mass="0.00899563" pos="2.96931e-12 0.0177547 0.00107314"
                               quat="0.681301 0.732003 0 0"
-                              diaginertia="1.72352e-06 1.60906e-06 3.22006e-07" />
+                              diaginertia="1.72352e-06 1.60906e-06 3.22006e-07" /> -->
                             <joint name="robot0:2f85:right_driver_joint" class="2f85:driver" />
                             <geom class="2f85:visual" mesh="2f85:driver" material="2f85:gray" />
                             <geom class="2f85:collision" mesh="2f85:driver" />
                             <body name="robot0:2f85:right_coupler" pos="0 0.0315 -0.0041">
-                              <inertial mass="0.0140974" pos="0 0.00301209 0.0232175"
+                              <!-- <inertial mass="0.0140974" pos="0 0.00301209 0.0232175"
                                 quat="0.705636 -0.0455904 0.0455904 0.705636"
-                                diaginertia="4.16206e-06 3.52216e-06 8.88131e-07" />
+                                diaginertia="4.16206e-06 3.52216e-06 8.88131e-07" /> -->
                               <joint name="robot0:2f85:right_coupler_joint" class="2f85:coupler" />
                               <geom class="2f85:visual" mesh="2f85:coupler" material="2f85:black" />
                               <geom class="2f85:collision" mesh="2f85:coupler" />
                             </body>
                           </body>
                           <body name="robot0:2f85:right_spring_link" pos="0 0.0132 0.0609">
-                            <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658"
+                            <!-- <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658"
                               quat="0.663403 -0.244737 0.244737 0.663403"
-                              diaginertia="8.96853e-06 6.71733e-06 2.63931e-06" />
+                              diaginertia="8.96853e-06 6.71733e-06 2.63931e-06" /> -->
                             <joint name="robot0:2f85:right_spring_link_joint"
                               class="2f85:spring_link" />
                             <geom class="2f85:visual" mesh="2f85:spring_link" material="2f85:black" />
                             <geom class="2f85:collision" mesh="2f85:spring_link" />
                             <body name="robot0:2f85:right_follower" pos="0 0.055 0.0375">
-                              <inertial mass="0.0125222" pos="0 -0.011046 0.0124786"
+                              <!-- <inertial mass="0.0125222" pos="0 -0.011046 0.0124786"
                                 quat="1 0.1664 0 0"
-                                diaginertia="2.67415e-06 2.4559e-06 6.02031e-07" />
+                                diaginertia="2.67415e-06 2.4559e-06 6.02031e-07" /> -->
                               <joint name="robot0:2f85:right_follower_joint" class="2f85:follower" />
                               <geom class="2f85:visual" mesh="2f85:follower" material="2f85:black" />
                               <geom class="2f85:collision" mesh="2f85:follower" />
                               <body name="robot0:2f85:right_pad" pos="0 -0.0189 0.01352">
                                 <geom class="2f85:pad_box1" name="robot0:2f85:right_pad1" />
                                 <geom class="2f85:pad_box2" name="robot0:2f85:right_pad2" />
-                                <inertial mass="0.0035" pos="0 -0.0025 0.0185"
+                                <!-- <inertial mass="0.0035" pos="0 -0.0025 0.0185"
                                   quat="0.707107 0 0 0.707107"
-                                  diaginertia="4.73958e-07 3.64583e-07 1.23958e-07" />
+                                  diaginertia="4.73958e-07 3.64583e-07 1.23958e-07" /> -->
                                 <geom class="2f85:visual" mesh="2f85:pad" />
                                 <body name="robot0:2f85:right_silicone_pad">
                                   <geom class="2f85:visual" mesh="2f85:silicone_pad"
@@ -292,16 +292,16 @@
                           <!-- Left-hand side 4-bar linkage -->
                           <body name="robot0:2f85:left_driver" pos="0 -0.0306011 0.054904"
                             quat="0 0 0 1">
-                            <inertial mass="0.00899563" pos="0 0.0177547 0.00107314"
+                            <!-- <inertial mass="0.00899563" pos="0 0.0177547 0.00107314"
                               quat="0.681301 0.732003 0 0"
-                              diaginertia="1.72352e-06 1.60906e-06 3.22006e-07" />
+                              diaginertia="1.72352e-06 1.60906e-06 3.22006e-07" /> -->
                             <joint name="robot0:2f85:left_driver_joint" class="2f85:driver" />
                             <geom class="2f85:visual" mesh="2f85:driver" material="2f85:gray" />
                             <geom class="2f85:collision" mesh="2f85:driver" />
                             <body name="robot0:2f85:left_coupler" pos="0 0.0315 -0.0041">
-                              <inertial mass="0.0140974" pos="0 0.00301209 0.0232175"
+                              <!-- <inertial mass="0.0140974" pos="0 0.00301209 0.0232175"
                                 quat="0.705636 -0.0455904 0.0455904 0.705636"
-                                diaginertia="4.16206e-06 3.52216e-06 8.88131e-07" />
+                                diaginertia="4.16206e-06 3.52216e-06 8.88131e-07" /> -->
                               <joint name="robot0:2f85:left_coupler_joint" class="2f85:coupler" />
                               <geom class="2f85:visual" mesh="2f85:coupler" material="2f85:black" />
                               <geom class="2f85:collision" mesh="2f85:coupler" />
@@ -309,25 +309,25 @@
                           </body>
                           <body name="robot0:2f85:left_spring_link" pos="0 -0.0132 0.0609"
                             quat="0 0 0 1">
-                            <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658"
+                            <!-- <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658"
                               quat="0.663403 -0.244737 0.244737 0.663403"
-                              diaginertia="8.96853e-06 6.71733e-06 2.63931e-06" />
+                              diaginertia="8.96853e-06 6.71733e-06 2.63931e-06" /> -->
                             <joint name="robot0:2f85:left_spring_link_joint"
                               class="2f85:spring_link" />
                             <geom class="2f85:visual" mesh="2f85:spring_link" material="2f85:black" />
                             <geom class="2f85:collision" mesh="2f85:spring_link" />
                             <body name="robot0:2f85:left_follower" pos="0 0.055 0.0375">
-                              <inertial mass="0.0125222" pos="0 -0.011046 0.0124786"
+                              <!-- <inertial mass="0.0125222" pos="0 -0.011046 0.0124786"
                                 quat="1 0.1664 0 0"
-                                diaginertia="2.67415e-06 2.4559e-06 6.02031e-07" />
+                                diaginertia="2.67415e-06 2.4559e-06 6.02031e-07" /> -->
                               <joint name="robot0:2f85:left_follower_joint" class="2f85:follower" />
                               <geom class="2f85:visual" mesh="2f85:follower" material="2f85:black" />
                               <geom class="2f85:collision" mesh="2f85:follower" />
                               <body name="robot0:2f85:left_pad" pos="0 -0.0189 0.01352">
                                 <geom class="2f85:pad_box1" name="robot0:2f85:left_pad1" />
                                 <geom class="2f85:pad_box2" name="robot0:2f85:left_pad2" />
-                                <inertial mass="0.0035" pos="0 -0.0025 0.0185" quat="1 0 0 1"
-                                  diaginertia="4.73958e-07 3.64583e-07 1.23958e-07" />
+                                <!-- <inertial mass="0.0035" pos="0 -0.0025 0.0185" quat="1 0 0 1"
+                                  diaginertia="4.73958e-07 3.64583e-07 1.23958e-07" /> -->
                                 <geom class="2f85:visual" mesh="2f85:pad" />
                                 <body name="robot0:2f85:left_silicone_pad">
                                   <geom class="2f85:visual" mesh="2f85:silicone_pad"
@@ -365,18 +365,18 @@
       <geom type="mesh" mesh="bottle" rgba="1 0 0 1" solimp="0 0 0.01" solref="0.02 1"/>
     </body>-->
 
-    <body name="bottle" pos="-0.6 0.6 0.651" quat="1 0 0 0.6">
-      <inertial mass="1.5" pos="0 0 0" diaginertia="4.73958e-07 3.64583e-07 1.23958e-07"/>
-      <freejoint name="root"/>
+    <body name="bottle" pos="-0.6 0.5 0.661" quat="1 0 0 0.6">
+      <!-- <inertial mass="1.5" pos="0 0 0" diaginertia="4.73958e-07 3.64583e-07 1.23958e-07"/> -->
+      <!--<freejoint name="root"/>-->
       <!--<geom type="sphere" size="0.05 0.05 0.05" rgba="1 0 0 1" solimp="0 0 0.01" solref="0.02 1"/>-->
-      <geom rgba="1 1 1 0" type="sphere" size="0.05 0.05 0.05" density="1" conaffinity="0" solimp="0 0 0.01" solref="0.02 1"/>
-      <geom rgba="1 0.8 0.5 1" type="cylinder" size="0.05 0.05 0.05" density="1" contype="1" conaffinity="0"/>
-      <!--<joint name="goal_slidey" type="slide" pos="0 0 0" axis="0 1 0" range="-10.3213 10.3" damping="0.5"/>
-      <joint name="goal_slidex" type="slide" pos="0 0 0" axis="1 0 0" range="-10.3213 10.3" damping="0.5"/>-->
+      <geom rgba="1 1 1 0" type="sphere" size="0.04 0.06 0.04" density="1" conaffinity="0" solimp="0 0 0.01" solref="0.02 1"/>
+      <geom rgba="1 0.8 0.5 1" type="cylinder" size="0.04 0.06 0.04" density="1" contype="1" conaffinity="0"/>
+      <joint name="bottle_slidey" type="slide" pos="0 0 0" axis="0 1 0" range="-10.3213 10.3" damping="1"/> <!-- damping = resistance au mouvement de l'objet,-->
+      <joint name="bottle_slidex" type="slide" pos="0 0 0" axis="1 0 0" range="-10.3213 10.3" damping="1"/>
     </body>
 
     <body name="goal" pos="-0.9 0 0.6">
-      <geom rgba="0 0.6 0 1" type="cylinder" size="0.04 0.001 0.1" density='0.00001' contype="0" conaffinity="0"/>
+      <geom rgba="0 0.6 0 1" type="cylinder" size="0.05 0.001 0.1" density='0.00001' contype="0" conaffinity="0"/>
     </body>
 
   </worldbody>
@@ -435,39 +435,42 @@
   </actuator>
   -->
 
-
-  <actuator>
-    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_pan" joint="robot0:ur5e:shoulder_pan_joint" forcerange="-1000 1000" ctrlrange="0 100"/>
-    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_lift" joint="robot0:ur5e:shoulder_lift_joint" forcerange="-1000 1000" ctrlrange="0 100"/>
-    <motor class="ur5e:size3_limited" name="robot0:ur5e:elbow" joint="robot0:ur5e:elbow_joint" forcerange="-1000 1000" ctrlrange="0 100"/>
-    <motor class="ur5e:size1" name="robot0:ur5e:wrist_1" joint="robot0:ur5e:wrist_1_joint" forcerange="-1000 1000" ctrlrange="0 100"/>
-    <motor class="ur5e:size1" name="robot0:ur5e:wrist_2" joint="robot0:ur5e:wrist_2_joint" forcerange="-1000 1000" ctrlrange="0 100"/>
-    <motor class="ur5e:size1" name="robot0:ur5e:wrist_3" joint="robot0:ur5e:wrist_3_joint" forcerange="-1000 1000" ctrlrange="0 100"/>
-  </actuator>
-  
-
   <!--
   <actuator>
-    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_pan" joint="robot0:ur5e:shoulder_pan_joint" ctrlrange="-30 30" ctrllimited="true"/>
-    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_lift" joint="robot0:ur5e:shoulder_lift_joint" ctrlrange="-30 30" ctrllimited="true"/>
-    <motor class="ur5e:size3_limited" name="robot0:ur5e:elbow" joint="robot0:ur5e:elbow_joint" ctrlrange="-30 30" ctrllimited="true"/>
-    <motor class="ur5e:size1" name="robot0:ur5e:wrist_1" joint="robot0:ur5e:wrist_1_joint" ctrlrange="-30 30" ctrllimited="true"/>
-    <motor class="ur5e:size1" name="robot0:ur5e:wrist_2" joint="robot0:ur5e:wrist_2_joint" ctrlrange="-30 30" ctrllimited="true"/>
-    <motor class="ur5e:size1" name="robot0:ur5e:wrist_3" joint="robot0:ur5e:wrist_3_joint" ctrlrange="-30 30" ctrllimited="true"/>
+    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_pan" joint="robot0:ur5e:shoulder_pan_joint" forcerange="-2000 2000" ctrlrange="0 100"/>
+    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_lift" joint="robot0:ur5e:shoulder_lift_joint" forcerange="-2000 2000" ctrlrange="0 100"/>
+    <motor class="ur5e:size3_limited" name="robot0:ur5e:elbow" joint="robot0:ur5e:elbow_joint" forcerange="-2000 2000" ctrlrange="0 100"/>
+    <motor class="ur5e:size1" name="robot0:ur5e:wrist_1" joint="robot0:ur5e:wrist_1_joint" forcerange="-2000 2000" ctrlrange="0 100"/>
+    <motor class="ur5e:size1" name="robot0:ur5e:wrist_2" joint="robot0:ur5e:wrist_2_joint" forcerange="-2000 2000" ctrlrange="0 100"/>
+    <motor class="ur5e:size1" name="robot0:ur5e:wrist_3" joint="robot0:ur5e:wrist_3_joint" forcerange="-2000 2000" ctrlrange="0 100"/>
   </actuator>
   -->
 
+
+  
   <actuator>
-    <general class="2f85" name="robot0:2f85:fingers_actuator" tendon="robot0:2f85:split"
-      forcerange="-5 5" ctrlrange="0 255"
-      gainprm="0.3137255 0 0" biasprm="0 -100 -10" />
+    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_pan" joint="robot0:ur5e:shoulder_pan_joint" ctrlrange="-5 5" ctrllimited="true"/>
+    <motor class="ur5e:size3" name="robot0:ur5e:shoulder_lift" joint="robot0:ur5e:shoulder_lift_joint" ctrlrange="-5 5" ctrllimited="true"/>
+    <motor class="ur5e:size3_limited" name="robot0:ur5e:elbow" joint="robot0:ur5e:elbow_joint" ctrlrange="-5 5" ctrllimited="true"/>
+    <motor class="ur5e:size1" name="robot0:ur5e:wrist_1" joint="robot0:ur5e:wrist_1_joint" ctrlrange="-5 5" ctrllimited="true"/>
+    <motor class="ur5e:size1" name="robot0:ur5e:wrist_2" joint="robot0:ur5e:wrist_2_joint" ctrlrange="-5 5" ctrllimited="true"/>
+    <motor class="ur5e:size1" name="robot0:ur5e:wrist_3" joint="robot0:ur5e:wrist_3_joint" ctrlrange="-5 5" ctrllimited="true"/>
   </actuator>
 
-   <!--
+
+
+  <actuator>
+    <general class="2f85" name="robot0:2f85:fingers_actuator" tendon="robot0:2f85:split"
+      forcerange="-5 5" ctrlrange="0 0" 
+      gainprm="0.3137255 0 0" biasprm="0 -100 -10" />
+  </actuator> <!-- 0 255 -->
+
+<!--
   <sensor>
     <force name="robot0:eef_force" site="robot0:eef_site" cutoff="50" />
     <torque name="robot0:eef_torque" site="robot0:eef_site" cutoff="10" />
-  </sensor>-->
+  </sensor>
+ -->
 
   <!--
   <keyframe>
