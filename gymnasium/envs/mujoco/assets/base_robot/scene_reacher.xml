@@ -349,34 +349,15 @@
 
     </body>
 
-
-
-    <body name="table_ok" pos="-0.55 0.5 0.3"> <!--quat="1 0 0 1" childclass="ur5e"-->
-    <!--
-      <inertial mass="4.0" pos="0 0 0" diaginertia="0.00443333156 0.00443333156 0.0072" material="ur5e:black"/>
-    -->
-      <geom type="box" size="0.7 0.7 0.3" rgba="1 1 1 1" solimp="0.9 0.95 0.001" solref="0.02 1"/>
+    <body name="table_ok" pos="0 0 0.3"> 
+      <geom type="box" size="1.1 1.1 0.3" rgba="1 1 1 1" solimp="0.9 0.95 0.001" solref="0.02 1"/>
     </body>
 
-    
-    <!--<body name="bottle" pos="-0.6 0.6 0.65" quat="0 0 1 1">
-      <inertial mass="1.5" pos="0 0 0" diaginertia="4.73958e-07 3.64583e-07 1.23958e-07"/>
-      <freejoint name="root"/>
-      <geom type="mesh" mesh="bottle" rgba="1 0 0 1" solimp="0 0 0.01" solref="0.02 1"/>
-    </body>-->
-
-    <body name="bottle" pos="-0.6 0.5 0.661" quat="1 0 0 0.6">
-      <!-- <inertial mass="1.5" pos="0 0 0" diaginertia="4.73958e-07 3.64583e-07 1.23958e-07"/> -->
-      <!--<freejoint name="root"/>-->
-      <!--<geom type="sphere" size="0.05 0.05 0.05" rgba="1 0 0 1" solimp="0 0 0.01" solref="0.02 1"/>-->
-      <geom rgba="1 1 1 0" type="sphere" size="0.04 0.06 0.04" density="1" conaffinity="0" solimp="0 0 0.01" solref="0.02 1"/>
-      <geom rgba="1 0.8 0.5 1" type="cylinder" size="0.04 0.06 0.04" density="1" contype="1" conaffinity="0"/>
-      <joint name="bottle_slidey" type="slide" pos="0 0 0" axis="0 1 0" range="-10.3213 10.3" damping="1"/> <!-- damping = resistance au mouvement de l'objet,-->
-      <joint name="bottle_slidex" type="slide" pos="0 0 0" axis="1 0 0" range="-10.3213 10.3" damping="1"/>
-    </body>
-
-    <body name="goal" pos="-0.9 0 0.8">
-      <geom rgba="0 0.6 0 1" type="cylinder" size="0.05 0.001 0.1" density='0.00001' contype="0" conaffinity="0"/>
+    <body name="bottle" pos="0 0 0" quat="1 0 0 0.6">
+      <geom rgba="0 0.6 0 1" type="sphere" size="0.03 0.04 0.04" density="10" conaffinity="0" solimp="0 0 0.01" solref="0.02 1"/>
+      <joint name="bottle_slidey" type="slide" pos="0 0 0" axis="0 1 0" range="-1 1" damping="1"/>
+      <joint name="bottle_slidex" type="slide" pos="0 0 0" axis="1 0 0" range="-1 1" damping="1"/>
+      <joint name="bottle_slidez" type="slide" pos="0 0 0" axis="0 0 1" range="0 2" damping="1"/>
     </body>
 
   </worldbody>
@@ -475,12 +456,10 @@
       gainprm="0.3137255 0 0" biasprm="0 -100 -10" />
   </actuator> <!-- 0 255 -->
 
-<!--
-  <sensor>
+  <!-- <sensor>
     <force name="robot0:eef_force" site="robot0:eef_site" cutoff="50" />
     <torque name="robot0:eef_torque" site="robot0:eef_site" cutoff="10" />
-  </sensor>
- -->
+  </sensor> -->
 
   <!--
   <keyframe>

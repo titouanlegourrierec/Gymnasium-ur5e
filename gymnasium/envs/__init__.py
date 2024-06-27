@@ -213,6 +213,20 @@ register(
 register(
     id="ur5e2",
     entry_point="gymnasium.envs.mujoco.ur5e2:PusherEnv",
+    max_episode_steps=300,
+    reward_threshold=0.0,
+)
+
+register(
+    id="ur5e-Reacher",
+    entry_point="gymnasium.envs.mujoco.ur5e_reacher:PusherEnv",
+    max_episode_steps=300,
+    reward_threshold=0.0,
+)
+
+register(
+    id="ur5e-Gravity",
+    entry_point="gymnasium.envs.mujoco.ur5e_gravity:PusherEnv",
     max_episode_steps=500,
     reward_threshold=0.0,
 )
