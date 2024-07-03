@@ -211,9 +211,16 @@ register(
 )
 
 register(
-    id="ur5e2",
-    entry_point="gymnasium.envs.mujoco.ur5e2:PusherEnv",
+    id="ur5e-Pusher",
+    entry_point="gymnasium.envs.mujoco.ur5e_pusher:PusherEnv",
     max_episode_steps=300,
+    reward_threshold=0.0,
+)
+
+register(
+    id="ur5e-Puller",
+    entry_point="gymnasium.envs.mujoco.ur5e_puller:PusherEnv",
+    max_episode_steps=500,
     reward_threshold=0.0,
 )
 

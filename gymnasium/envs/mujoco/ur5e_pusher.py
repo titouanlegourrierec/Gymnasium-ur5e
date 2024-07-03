@@ -172,7 +172,7 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
-        xml_file: str = "base_robot/scene.xml",
+        xml_file: str = "base_robot/scene_pusher.xml",
         frame_skip: int = 5,
         default_camera_config: Dict[str, Union[float, int]] = DEFAULT_CAMERA_CONFIG,
         reward_near_weight: float = 0.5,
@@ -309,7 +309,7 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
         reward = reward_dist + 0.3 * reward_near #+ reward_ctrl * 0.1
         # reward = reward_near + reward_dist #+ 0.1 * reward_ctrl
 
-        done = np.linalg.norm(vec_2) < 0.02
+        done = np.linalg.norm(vec_2) < 0.05
 
         reward_info = {
             "reward_dist": reward_dist,
@@ -339,16 +339,16 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
         qpos = self.init_qpos
         #qvel = self.init_qvel
         
-        # self.cylinder_pos = np.concatenate(
-        #     [
-        #         self.np_random.uniform(low=-0.1, high=0.1, size=1),
-        #         self.np_random.uniform(low=-0.1, high=0.1, size=1)
-        #     ]
-        # )
+        self.cylinder_pos = np.concatenate(
+            [
+                self.np_random.uniform(low=-0.05, high=0.05, size=1),
+                self.np_random.uniform(low=-0.05, high=0.05, size=1)
+            ]
+        )
 
         #self.cylinder_pos = [0,0]
 
-        #qpos[-2:] = self.cylinder_pos
+        qpos[-2:] = self.cylinder_pos
 
         qvel = self.init_qvel + self.np_random.uniform(
             low=-0.05, high=0.05, size=self.model.nv

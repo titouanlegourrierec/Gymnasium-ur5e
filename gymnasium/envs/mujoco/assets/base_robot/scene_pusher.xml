@@ -367,15 +367,15 @@
 
     <body name="bottle" pos="-0.6 0.5 0.661" quat="1 0 0 0.6">
       <!-- <inertial mass="1.5" pos="0 0 0" diaginertia="4.73958e-07 3.64583e-07 1.23958e-07"/> -->
-      <!--<freejoint name="root"/>-->
+      <!-- <freejoint name="root"/> -->
       <!--<geom type="sphere" size="0.05 0.05 0.05" rgba="1 0 0 1" solimp="0 0 0.01" solref="0.02 1"/>-->
       <geom rgba="1 1 1 0" type="sphere" size="0.04 0.06 0.04" density="1" conaffinity="0" solimp="0 0 0.01" solref="0.02 1"/>
       <geom rgba="1 0.8 0.5 1" type="cylinder" size="0.04 0.06 0.04" density="1" contype="1" conaffinity="0"/>
-      <joint name="bottle_slidey" type="slide" pos="0 0 0" axis="0 1 0" range="-10.3213 10.3" damping="1"/> <!-- damping = resistance au mouvement de l'objet,-->
+      <joint name="bottle_slidey" type="slide" pos="0 0 0" axis="0 1 0" range="-10.3213 10.3" damping="1"/>
       <joint name="bottle_slidex" type="slide" pos="0 0 0" axis="1 0 0" range="-10.3213 10.3" damping="1"/>
     </body>
 
-    <body name="goal" pos="-0.9 0 0.8">
+    <body name="goal" pos="-0.8 0.1 0.6">
       <geom rgba="0 0.6 0 1" type="cylinder" size="0.05 0.001 0.1" density='0.00001' contype="0" conaffinity="0"/>
     </body>
 

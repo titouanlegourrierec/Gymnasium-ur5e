@@ -172,7 +172,7 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
 
     def __init__(
         self,
-        xml_file: str = "base_robot/scene_gravity.xml",
+        xml_file: str = "base_robot/scene_puller.xml",
         frame_skip: int = 5,
         default_camera_config: Dict[str, Union[float, int]] = DEFAULT_CAMERA_CONFIG,
         reward_near_weight: float = 0.5,
@@ -287,41 +287,55 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
     
     
     
+    # def _get_rew(self, action):
+    #     vec_1 = self.get_body_com("bottle") - self.get_body_com("robot0:2f85:base")
+    #     vec_2 = self.get_body_com("bottle") - self.get_body_com("goal")
+
+    #     # Calculer le centre de masse pour right_pad et left_pad
+    #     com_right_pad = self.get_body_com("robot0:2f85:right_pad")
+    #     com_left_pad = self.get_body_com("robot0:2f85:left_pad")
+
+    #     # Trouver le point milieu entre right_pad et left_pad
+    #     mid_point = (com_right_pad + com_left_pad) / 2
+
+    #     # Calculer la différence entre la position du centre de masse de "bottle" et le point milieu
+    #     vec_diff = self.get_body_com("bottle") - mid_point
+
+    #     # reward_near = -np.linalg.norm(vec_1)
+    #     reward_near = -np.linalg.norm(vec_diff)
+    #     reward_dist = -np.linalg.norm(vec_2)
+    #     reward_ctrl = -np.square(action).sum()
+
+    #     reward = reward_dist + 0.3 * reward_near #+ reward_ctrl * 0.1
+    #     # reward = reward_near + reward_dist #+ 0.1 * reward_ctrl
+
+    #     if np.linalg.norm(vec_diff) < 0.1 and action[-1] > 30:
+    #         reward += 0.5
+
+    #     done = False
+    #     if np.linalg.norm(vec_2) < 0.05:
+    #         reward += 1
+    #         done = True        
+
+    #     reward_info = {
+    #         "reward_dist": reward_dist,
+    #         "reward_ctrl": reward_ctrl,
+    #         "reward_near": reward_near,
+    #     }
+
+    #     return reward, reward_info, done
+    
     def _get_rew(self, action):
-        vec_1 = self.get_body_com("bottle") - self.get_body_com("robot0:2f85:base")
         vec_2 = self.get_body_com("bottle") - self.get_body_com("goal")
-
-        # Calculer le centre de masse pour right_pad et left_pad
-        com_right_pad = self.get_body_com("robot0:2f85:right_pad")
-        com_left_pad = self.get_body_com("robot0:2f85:left_pad")
-
-        # Trouver le point milieu entre right_pad et left_pad
-        mid_point = (com_right_pad + com_left_pad) / 2
-
-        # Calculer la différence entre la position du centre de masse de "bottle" et le point milieu
-        vec_diff = self.get_body_com("bottle") - mid_point
-
-        # reward_near = -np.linalg.norm(vec_1)
-        reward_near = -np.linalg.norm(vec_diff)
-        reward_dist = -np.linalg.norm(vec_2)
-        reward_ctrl = -np.square(action).sum()
-
-        reward = reward_dist + 0.3 * reward_near #+ reward_ctrl * 0.1
-        # reward = reward_near + reward_dist #+ 0.1 * reward_ctrl
-
-        if np.linalg.norm(vec_diff) < 0.1 and action[-1] > 30:
-            reward += 0.5
 
         done = False
         if np.linalg.norm(vec_2) < 0.05:
-            reward += 1
+            reward = 100
             done = True
+        else:
+            reward = -1
 
-        reward_info = {
-            "reward_dist": reward_dist,
-            "reward_ctrl": reward_ctrl,
-            "reward_near": reward_near,
-        }
+        reward_info = {}
 
         return reward, reward_info, done
 
@@ -351,6 +365,8 @@ class PusherEnv(MujocoEnv, utils.EzPickle):
                 self.np_random.uniform(low=-0.1, high=0.1, size=1)
             ]
         )
+
+        #self.cylinder_pos = [0,0]
 
         qpos[-2:] = self.cylinder_pos
 
